@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GitHub Style Form</title>
+    <title>Sign up</title>
     <style>
         /* Body Styling */
         body {
@@ -16,7 +16,7 @@
             margin: 0;
         }
 
-        /* Form Container */
+        
         form {
             background: white;
             padding: 25px;
@@ -26,7 +26,7 @@
             text-align: center;
         }
 
-        /* Input Fields */
+    
         input {
             width: 100%;
             padding: 10px;
@@ -38,12 +38,13 @@
         }
 
         input:focus {
-            border-color: #0366d6;
+            border-color:rgb(8, 8, 8);
             outline: none;
-            box-shadow: 0px 0px 5px rgba(3, 102, 214, 0.3);
+            box-shadow: 0px 8px 5px rgba(12, 12, 12, 0.3);
         }
 
-        /* Button Styling */
+       
+        
         .btn {
             width: 100%;
             background-color: #2ea44f;
@@ -76,44 +77,45 @@
             text-decoration: underline;
         }
         .btn {
-            width: 50%;
-            background-color: #2ea44f;
-            color: white;
-            padding: 10px;
-            font-size: 16px;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: background 0.3s;
-            margin-top:20px;
-        }
-        .butn {
-            width: 50%;
-            background-color: #2ea44f;
-            color: white;
-            padding: 10px;
-            font-size: 16px;
-             border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: background 0.3s;
-            margin-top:20px;
-        }
+    width: 48%;
+    background-color: #2ea44f;
+    color: white;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s;
+    margin-top: 20px;
+    margin-right: 10px;
+}
+
+.butn {
+    width: 48%;
+    background-color: #2ea44f;
+    color: white;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s;
+    margin-top: 20px;
+}
+
     </style>
 </head>
 <body>
     <form action="" method="post">
-    <u><h1>Signup</h1></u>  
-    <input type="text" placeholder="Enter your first name" maxlength="16" required>
+    <h1>Signup</h1> 
+
         <input type="email" placeholder="Enter your email"required>
         <input type="password" placeholder="Enter your Password" maxlength="40"required>
         <input type="number" placeholder="Enter your number" maxlength="10"required>
         <input type="text" placeholder="Enter your country"required>
         <input type="text" placeholder="Enter your state"required>
         <input type="text" placeholder="Enter your city"required>
-        <button type="submit" class="btn">Sign Up</button><button type="submit" class="butn">Clear</button>
-       
-        
+       <button type="submit" class="btn">Login</button><button type="submit" class="butn">Clear</button>
     </form>
 </body>
 </html>
