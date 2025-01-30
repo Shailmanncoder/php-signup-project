@@ -103,15 +103,12 @@
 </head>
 <body>
     <form action="" method="post">
-    <u><h1>Signup</h1></u>  
-    <input type="text" placeholder="Enter your first name" maxlength="16" required>
+    <u><h1>Login</h1></u>  
+
         <input type="email" placeholder="Enter your email"required>
         <input type="password" placeholder="Enter your Password" maxlength="40"required>
-        <input type="number" placeholder="Enter your number" maxlength="10"required>
-        <input type="text" placeholder="Enter your country"required>
-        <input type="text" placeholder="Enter your state"required>
-        <input type="text" placeholder="Enter your city"required>
-        <button type="submit" class="btn">Sign Up</button><button type="submit" class="butn">Clear</button>
+       
+        <button type="submit" class="btn">Login</button><button type="submit" class="butn">Clear</button>
        
         
     </form>
