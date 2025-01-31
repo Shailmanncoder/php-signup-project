@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <style>
-        /* Body Styling */
+       
         body {
             font-family: Arial, sans-serif;
             background-color: #f6f8fa;
@@ -16,7 +16,7 @@
             margin: 0;
         }
 
-        /* Form Container */
+        
         form {
             background: white;
             padding: 25px;
@@ -26,7 +26,7 @@
             text-align: center;
         }
 
-        /* Input Fields */
+        
         input {
             width: 100%;
             padding: 10px;
@@ -43,7 +43,7 @@
             box-shadow: 0px 8px 5px rgba(10, 10, 10, 0.3);
         }
 
-        /* Button Styling */
+        
         .btn {
             width: 100%;
             background-color: #2ea44f;
@@ -60,7 +60,7 @@
             background-color: #22863a;
         }
 
-        /* Footer Links */
+        
         .form-footer {
             font-size: 12px;
             margin-top: 15px;
@@ -101,6 +101,10 @@
     transition: background 0.3s;
     margin-top: 20px;
 }
+.butn:hover{
+    background-color:#22863a;
+}
+
     </style>
 </head>
 <body>

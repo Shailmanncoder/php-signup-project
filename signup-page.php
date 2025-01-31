@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign up</title>
     <style>
-        /* Body Styling */
+       
         body {
             font-family: Arial, sans-serif;
             background-color: #f6f8fa;
@@ -17,7 +17,7 @@
         }
 
         
-        form {
+        .form {
             background: white;
             padding: 25px;
             width: 350px;
@@ -25,7 +25,16 @@
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             text-align: center;
         }
-
+        .container {
+            background: white;
+            padding: 25px;
+            height:450px;
+            width: 500px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            margin-left:80px;
+        }
     
         input {
             width: 100%;
@@ -102,20 +111,77 @@
     transition: background 0.3s;
     margin-top: 20px;
 }
+.butn:hover{
+    background-color:#22863a;
+}
 
     </style>
 </head>
 <body>
-    <form action="" method="post">
+    <form action="" method="post"class="form">
     <h1>Signup</h1> 
 
-        <input type="email" placeholder="Enter your email"required>
-        <input type="password" placeholder="Enter your Password" maxlength="40"required>
-        <input type="number" placeholder="Enter your number" maxlength="10"required>
-        <input type="text" placeholder="Enter your country"required>
-        <input type="text" placeholder="Enter your state"required>
-        <input type="text" placeholder="Enter your city"required>
+        <input type="email" placeholder="Enter your email" name="email"required>
+        <input type="password" placeholder="Enter your Password" maxlength="40" name="password"required>
+        <input type="number" placeholder="Enter your Phone number" maxlength="10" name="number"required>
+        <input type="text" placeholder="Enter your country" name="country" required>
+        <input type="text" placeholder="Enter your state" name="state" required>
+        <input type="text" placeholder="Enter your city" name="city" required>
        <button type="submit" class="btn">Login</button><button type="submit" class="butn">Clear</button>
     </form>
+    <div class="container">
+    <?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "login";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $email = $_POST["email"];
+    $key = $_POST["password"];
+    $number = $_POST["number"];
+    $country = $_POST["country"];
+    $state = $_POST["state"];
+    $city = $_POST["city"];
+
+    // Hash the password before storing it
+    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+    echo "Email :", $email, "<br>";
+    echo "Password :", $key, "<br>";
+    echo "Phone number :", $number, "<br>";
+    echo "Country :", $country, "<br>";
+    echo "State :", $state, "<br>";
+    echo "City :", $city, "<br>";
+
+    try {
+        $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+        // Set the PDO error mode to exception
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        // Prepare the SQL statement
+        $sql = "INSERT INTO `customer_details` (`email`, `password`, `Mobile_no`, `country`, `state`, `city`) VALUES (:email, :key, :number, :country, :state, :city)";
+        $stmt = $conn->prepare($sql);
+
+        // Bind parameters
+        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':key', $hashed_password);
+        $stmt->bindParam(':number', $number);
+        $stmt->bindParam(':country', $country);
+        $stmt->bindParam(':state', $state);
+        $stmt->bindParam(':city', $city);
+
+        // Execute the statement
+        $stmt->execute();
+
+        echo "New record created successfully";
+    } catch (PDOException $e) {
+        echo "Error: " . $e->getMessage();
+    }
+
+    $conn = null;
+}
+?>
+    </div>
 </body>
 </html>
