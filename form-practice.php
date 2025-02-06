@@ -49,7 +49,7 @@
         input:focus {
             border-color:rgb(8, 8, 8);
             outline: none;
-            box-shadow: 0px 8px 5px rgba(12, 12, 12, 0.3);
+            box-shadow: 5px 10px 5px rgba(12, 12, 12, 0.3);
         }
 
        
@@ -168,14 +168,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         // Prepare the SQL statement
-        $sql = "INSERT INTO student_details (student, parents, rollno, class, section, school, email, mobilenumber, password_hash) 
-                VALUES (:student, :parents, :rollno, :class, :section, :school, :email, :mobilenumber, :password_hash)";
+        $sql = "INSERT INTO student_details (student, parent, rollno, class, section, school, email, mobilenumber, password_hash) 
+                VALUES (:student, :parent, :rollno, :class, :section, :school, :email, :mobilenumber, :password_hash)";
         
         $stmt = $conn->prepare($sql);
 
         // Bind parameters
         $stmt->bindParam(':student', $student);
-        $stmt->bindParam(':parents', $parents);
+        $stmt->bindParam(':parent', $parents);
         $stmt->bindParam(':rollno', $rollno);
         $stmt->bindParam(':class', $class);
         $stmt->bindParam(':section', $section);
@@ -195,6 +195,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $conn = null;
 }
 ?>
+
  </div>
 </body>
 </html>

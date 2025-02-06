@@ -119,7 +119,7 @@
 </head>
 <body>
     <form action="" method="post"class="form">
-    <h1>Student Registration Form</h1> 
+    <h1>Student Registration Form </h1> 
 
         <input type="email" placeholder="Enter your email" name="email"required>
         <input type="password" placeholder="Enter your Password" maxlength="40" name="password"required>
