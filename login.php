@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GitHub Style Form</title>
+    <title>Login</title>
     <style>
-        /* Body Styling */
+       
         body {
             font-family: Arial, sans-serif;
             background-color: #f6f8fa;
@@ -16,17 +16,17 @@
             margin: 0;
         }
 
-        /* Form Container */
+        
         form {
             background: white;
             padding: 25px;
             width: 350px;
             border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 8px 10px rgba(0, 0, 0, 0.1);
             text-align: center;
         }
 
-        /* Input Fields */
+        
         input {
             width: 100%;
             padding: 10px;
@@ -38,12 +38,12 @@
         }
 
         input:focus {
-            border-color: #0366d6;
+            border-color:rgb(6, 6, 6);
             outline: none;
-            box-shadow: 0px 0px 5px rgba(3, 102, 214, 0.3);
+            box-shadow: 0px 8px 5px rgba(10, 10, 10, 0.3);
         }
 
-        /* Button Styling */
+        
         .btn {
             width: 100%;
             background-color: #2ea44f;
@@ -60,7 +60,7 @@
             background-color: #22863a;
         }
 
-        /* Footer Links */
+        
         .form-footer {
             font-size: 12px;
             margin-top: 15px;
@@ -76,34 +76,40 @@
             text-decoration: underline;
         }
         .btn {
-            width: 50%;
-            background-color: #2ea44f;
-            color: white;
-            padding: 10px;
-            font-size: 16px;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: background 0.3s;
-            margin-top:20px;
-        }
-        .butn {
-            width: 50%;
-            background-color: #2ea44f;
-            color: white;
-            padding: 10px;
-            font-size: 16px;
-             border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: background 0.3s;
-            margin-top:20px;
-        }
+    width: 48%;
+    background-color: #2ea44f;
+    color: white;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s;
+    margin-top: 20px;
+    margin-right: 10px;
+}
+
+.butn {
+    width: 48%;
+    background-color: #2ea44f;
+    color: white;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s;
+    margin-top: 20px;
+}
+.butn:hover{
+    background-color:#22863a;
+}
+
     </style>
 </head>
 <body>
     <form action="" method="post">
-    <u><h1>Login</h1></u>  
+    <h1>Login</h1> 
 
         <input type="email" placeholder="Enter your email"required>
         <input type="password" placeholder="Enter your Password" maxlength="40"required>

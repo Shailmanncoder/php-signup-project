@@ -119,7 +119,7 @@
 </head>
 <body>
     <form action="" method="post"class="form">
-    <h1>Student Registration Form </h1> 
+    <h1>Signup</h1> 
 
         <input type="email" placeholder="Enter your email" name="email"required>
         <input type="password" placeholder="Enter your Password" maxlength="40" name="password"required>
@@ -134,7 +134,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "login";
+$dbname = "signup";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST["email"];
@@ -154,13 +154,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     echo "State :", $state, "<br>";
     echo "City :", $city, "<br>";
 
-    try {
+    /* try {
         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
         // Set the PDO error mode to exception
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         // Prepare the SQL statement
-        $sql = "INSERT INTO `customer_details` (`email`, `password`, `Mobile_no`, `country`, `state`, `city`) VALUES (:email, :key, :number, :country, :state, :city)";
+        $sql = "INSERT INTO `customer` (`email`, `password`, `Mobile_no`, `country`, `state`, `city`) VALUES (:email, :key, :number, :country, :state, :city)";
         $stmt = $conn->prepare($sql);
 
         // Bind parameters
@@ -179,7 +179,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "Error: " . $e->getMessage();
     }
 
-    $conn = null;
+    $conn = null; */
 }
 ?>
     </div>

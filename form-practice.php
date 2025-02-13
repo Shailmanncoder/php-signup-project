@@ -49,7 +49,7 @@
         input:focus {
             border-color:rgb(8, 8, 8);
             outline: none;
-            box-shadow: 0px 8px 5px rgba(12, 12, 12, 0.3);
+            box-shadow: 5px 10px 5px rgba(12, 12, 12, 0.3);
         }
 
        
@@ -119,40 +119,48 @@
 </head>
 <body>
     <form action="" method="post"class="form">
-    <h1>Student Registration Form </h1> 
-
-        <input type="email" placeholder="Enter your email" name="email"required>
-        <input type="password" placeholder="Enter your Password" maxlength="40" name="password"required>
-        <input type="number" placeholder="Enter your Phone number" maxlength="10" name="number"required>
-        <input type="text" placeholder="Enter your country" name="country" required>
-        <input type="text" placeholder="Enter your state" name="state" required>
-        <input type="text" placeholder="Enter your city" name="city" required>
-       <button type="submit" class="btn">Login</button><button type="submit" class="butn">Clear</button>
+    <h1>Signup</h1> 
+        <input type="text"placeholder="Enter student name " name="student"required>
+        <input type="text"placeholder="Enter Parents name " name="parents"required>
+        <input type="number"placeholder="Enter your Roll no. " name="rollno"required>
+        <input type="text"placeholder="Enter your Class  " name="class"required>
+        <input type="text"placeholder="Enter your Section" name="section"required>
+        <input type="text"placeholder="Enter your School" name="school"required>
+        <input type="email"placeholder="Enter your email id" name="email"required>
+        <input type="number"placeholder="Enter your Mobile no." name="mobile-number"required>
+        <input type="password"placeholder="Enter your Password " name="password"required>
+        <button type="submit" class="btn">Login</button><button type="submit" class="butn">Clear</button> 
+       
     </form>
     <div class="container">
     <?php
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "login";
+$dbname = "student_detail";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email = $_POST["email"];
-    $key = $_POST["password"];
-    $number = $_POST["number"];
-    $country = $_POST["country"];
-    $state = $_POST["state"];
-    $city = $_POST["city"];
+    $student = $_REQUEST["student"];
+    $parents = $_REQUEST["parents"];
+    $rollno = $_REQUEST["rollno"];
+    $class = $_REQUEST["class"];
+    $section = $_REQUEST["section"];
+    $school = $_REQUEST["school"];
+    $email = $_REQUEST["email"];
+    $mobilenumber = $_REQUEST["mobile-number"];
+    $password_plain = $_REQUEST["password"];
 
     // Hash the password before storing it
-    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+    $hashed_password = password_hash($password_plain, PASSWORD_DEFAULT);
 
-    echo "Email :", $email, "<br>";
-    echo "Password :", $key, "<br>";
-    echo "Phone number :", $number, "<br>";
-    echo "Country :", $country, "<br>";
-    echo "State :", $state, "<br>";
-    echo "City :", $city, "<br>";
+    echo "Student Name: ", $student, "<br>";
+    echo "Parent Name: ", $parents, "<br>";
+    echo "Roll No: ", $rollno, "<br>";
+    echo "Class: ", $class, "<br>";
+    echo "Section: ", $section, "<br>";
+    echo "School: ", $school, "<br>";
+    echo "Email: ", $email, "<br>";
+    echo "Mobile No: ", $mobilenumber, "<br>";
 
     try {
         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
@@ -160,21 +168,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         // Prepare the SQL statement
-        $sql = "INSERT INTO `customer_details` (`email`, `password`, `Mobile_no`, `country`, `state`, `city`) VALUES (:email, :key, :number, :country, :state, :city)";
+        $sql = "INSERT INTO student_details (student, parent, rollno, class, section, school, email, mobilenumber, password_hash) 
+                VALUES (:student, :parent, :rollno, :class, :section, :school, :email, :mobilenumber, :password_hash)";
+        
         $stmt = $conn->prepare($sql);
 
         // Bind parameters
+        $stmt->bindParam(':student', $student);
+        $stmt->bindParam(':parent', $parents);
+        $stmt->bindParam(':rollno', $rollno);
+        $stmt->bindParam(':class', $class);
+        $stmt->bindParam(':section', $section);
+        $stmt->bindParam(':school', $school);
         $stmt->bindParam(':email', $email);
-        $stmt->bindParam(':key', $hashed_password);
-        $stmt->bindParam(':number', $number);
-        $stmt->bindParam(':country', $country);
-        $stmt->bindParam(':state', $state);
-        $stmt->bindParam(':city', $city);
+        $stmt->bindParam(':mobilenumber', $mobilenumber);
+        $stmt->bindParam(':password_hash', $hashed_password);
 
         // Execute the statement
         $stmt->execute();
 
-        echo "New record created successfully";
+        echo "New record created successfully!";
     } catch (PDOException $e) {
         echo "Error: " . $e->getMessage();
     }
@@ -182,6 +195,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $conn = null;
 }
 ?>
-    </div>
+
+ </div>
 </body>
 </html>
