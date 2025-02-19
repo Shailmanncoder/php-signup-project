@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student details</title>
+    <title>Student Details</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -55,38 +55,30 @@
     </style>
 </head>
 <body>
-    <form id="loginForm"action=""method="POST">
-        <h1>Student details</h1>
-        <input type="text" name="student"class="clear" placeholder="Enter student name" required>
-        <input type="email" name="email"class="clear" placeholder="Enter your email Id" maxlength="40" required>
-        <input type="password" name="password"class="clear" placeholder="Enter your password" required>
-        <input type="number" name="number"class="clear" placeholder="Enter your Mobile no." maxlength="10" required>
-        <input type="date" name="date"class="clear" required>
-        
+    <form id="loginForm" action="" method="POST">
+        <h1>Student Details</h1>
+        <input type="text" name="student" class="clear" placeholder="Enter student name" required>
+        <input type="email" name="email" class="clear" placeholder="Enter your email Id" maxlength="40" required>
+        <input type="password" name="password" class="clear" placeholder="Enter your password" required>
+        <input type="number" name="number" class="clear" placeholder="Enter your Mobile no." required>
+        <input type="date" name="date" class="clear" required>
+
         <!-- Dropdown for Course Selection -->
-        <select name="fd" name="courses"class="clear" id="courseSelect" required>
+        <select name="courses" class="clear" id="courseSelect" required>
             <option value="" disabled selected hidden>Select Course</option>
-            <option value="PHP">HTML</option>
-            <option value="JavaScript">CSS</option>
-            <option value="Python">JavaScript</option>
+            <option value="HTML">HTML</option>
+            <option value="CSS">CSS</option>
+            <option value="JavaScript">JavaScript</option>
             <option value="PHP">PHP</option>
-            <option value="JavaScript">C,C++</option>
+            <option value="C,C++">C, C++</option>
             <option value="Python">Python</option>
         </select>
 
-        <button type="submit" class="btn">submit</button>
+        <button type="submit" class="btn">Submit</button>
         <button type="button" class="butn" onclick="clearFields()">Clear</button>
     </form>
 
     <script>
-        document.getElementById("courseSelect").addEventListener("invalid", function(event) {
-            event.target.setCustomValidity("Please select a course"); // Set custom validation message
-        });
-
-        document.getElementById("courseSelect").addEventListener("input", function(event) {
-            event.target.setCustomValidity(""); // Clear message when user selects a valid option
-        });
-
         function clearFields() {
             let inputs = document.getElementsByClassName("clear");
             for (let i = 0; i < inputs.length; i++) {
@@ -102,46 +94,43 @@
 </html>
 <?php
 $servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "student_details";
+$username = "root"; // Change if different
+$password = ""; // Your database password
+$dbname = "student_details"; // Your actual database name
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $student = $_REQUEST["student"];
-    $email = $_REQUEST["email"];
-    $key = $_REQUEST["password"];
-    $number = $_REQUEST["number"];
-    $date = $_REQUEST["date"];
-    $courses = $_REQUEST["courses"];
- 
- 
+    // Check if the 'courses' key exists before accessing it
+    $student = $_POST["student"] ?? null;
+    $email = $_POST["email"] ?? null;
+    $key = $_POST["password"] ?? null;
+    $number = $_POST["number"] ?? null;
+    $date = $_POST["date"] ?? null;
+    $courses = $_POST["courses"] ?? null;
+
+    // If courses is still NULL, show an error
+    if (!$courses) {
+        echo "<script>alert('Please select a course!'); window.history.back();</script>";
+        exit();
+    }
 
     // Hash the password before storing it
     $hashed_password = password_hash($key, PASSWORD_DEFAULT);
 
-    echo "Student Name: ", $student, "<br>";
-    echo "Parent Name: ", $email, "<br>";
-    echo "Roll No: ", $key, "<br>";
-    echo "Class: ", $number, "<br>";
-    echo "Section: ", $date, "<br>";
-    echo "School: ", $courses, "<br>";
-   
-
     try {
+        // Establish database connection
         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-        // Set the PDO error mode to exception
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         // Prepare the SQL statement
-        $sql = "INSERT INTO course (student,email, password, Mobile_no, date, course) 
-                VALUES (:student,:email, :password_hash,:Mobile_no, :date, :course)";
-        
+        $sql = "INSERT INTO course (student, email, password, Mobile_no,date, course) 
+                VALUES (:student, :email, :password, :Mobile_no, :date, :course)";
+
         $stmt = $conn->prepare($sql);
 
         // Bind parameters
         $stmt->bindParam(':student', $student);
         $stmt->bindParam(':email', $email);
-        $stmt->bindParam(':password_hash', $hashed_password);
+        $stmt->bindParam(':password', $hashed_password);
         $stmt->bindParam(':Mobile_no', $number);
         $stmt->bindParam(':date', $date);
         $stmt->bindParam(':course', $courses);
@@ -149,11 +138,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Execute the statement
         $stmt->execute();
 
-       /*  echo "New record created successfully!"; */
+        echo "<script>alert('Student details saved successfully!'); window.location.href='course_sumbition.php';</script>";
     } catch (PDOException $e) {
-        echo "Error: " . $e->getMessage();
+        echo "<script>alert('Database Error: " . $e->getMessage() . "');</script>";
     }
 
-    $conn = null;
+    $conn = null; // Close connection
 }
 ?>
