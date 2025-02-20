@@ -5,22 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Details</title>
     <style>
-        body {
+  body {
             font-family: Arial, sans-serif;
-            background-color: #f6f8fa;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
+
             margin: 0;
         }
+
         form {
             background: white;
             padding: 25px;
             width: 350px;
-            border-radius: 10px;
+            border-radius: 15px;
             text-align: center;
-            border: 1px solid black;
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3), -5px -5px 15px rgba(255, 255, 255, 0.3);
+            transition: all 0.4s ease-in-out;
+            transform: perspective(1000px) translateZ(0);
+        }
+
+        form:hover {
+            
+            box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.5), -10px -10px 30px rgba(255, 255, 255, 0.4);
         }
         input, select {
             width: 100%;
@@ -65,13 +73,32 @@
 
         <!-- Dropdown for Course Selection -->
         <select name="courses" class="clear" id="courseSelect" required>
-            <option value="" disabled selected hidden>Select Course</option>
-            <option value="HTML">HTML</option>
-            <option value="CSS">CSS</option>
-            <option value="JavaScript">JavaScript</option>
-            <option value="PHP">PHP</option>
-            <option value="C,C++">C, C++</option>
-            <option value="Python">Python</option>
+        <option value=""disable hidden >Select course</option>
+        <option value="Digital Marketing">None</option>
+        <option value="Digital Marketing">Digital Marketing</option>
+        <option value="SAP training">SAP training</option>
+        <option value="MEAN/MERN Stack">MEAN/MERN Stack</option>
+        <option value="Excel training">Excel training</option>
+        <option value="Automation training">Automation training</option>
+        <option value="Software training">Software training</option>
+        <option value="React training">React training</option>
+        <option value="Android training">Android training</option>
+        <option value="Aptitude training">Aptitude training</option>
+        <option value="Graphic designing">Graphic designing</option>
+        <option value="Database">Database</option>
+        <option value=".Net Training">.Net Training</option>
+        <option value="Core and Advanced java">Core and Advanced java</option>
+        <option value="Data science">Data science</option>
+        <option value="AWS/Azure">AWS/Azure</option>
+        <option value="UI development">UI development</option>
+        <option value="AI/Machine learning">AI/Machine learning</option>
+        <option value="HTML">HTML</option>
+        <option value="CSS">CSS</option>
+        <option value="JavaScript">JavaScript</option>
+        <option value="PHP">PHP</option>
+        <option value="C,C++">C, C++</option>
+        <option value="Python">Python</option>
+
         </select>
 
         <button type="submit" class="btn">Submit</button>
@@ -138,7 +165,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Execute the statement
         $stmt->execute();
 
-        echo "<script>alert('Student details saved successfully!'); window.location.href='course_sumbition.php';</script>";
+        echo "<script>alert('Student details saved successfully!'); window.location.href='crude1.php';</script>";
     } catch (PDOException $e) {
         echo "<script>alert('Database Error: " . $e->getMessage() . "');</script>";
     }

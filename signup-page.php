@@ -25,16 +25,7 @@
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             text-align: center;
         }
-        .container {
-            background: white;
-            padding: 25px;
-            height:450px;
-            width: 500px;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            margin-left:80px;
-        }
+   
     
         input {
             width: 100%;
@@ -129,7 +120,7 @@
         <input type="text" placeholder="Enter your city" name="city" required>
        <button type="submit" class="btn">Login</button><button type="submit" class="butn">Clear</button>
     </form>
-    <div class="container">
+    
     <?php
 $servername = "localhost";
 $username = "root";
@@ -182,6 +173,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $conn = null;
 }
 ?>
-    </div>
+    
 </body>
 </html>

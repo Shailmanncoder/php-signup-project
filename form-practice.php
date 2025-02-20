@@ -25,16 +25,7 @@
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             text-align: center;
         }
-        .container {
-            background: white;
-            padding: 25px;
-            height:450px;
-            width: 500px;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            margin-left:80px;
-        }
+        
     
         input {
             width: 100%;
