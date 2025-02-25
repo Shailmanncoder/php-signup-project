@@ -30,9 +30,19 @@
             margin-bottom: 15px;
             background-color: white;
         }
+        input:focus{
+            border-color: #1877f2;
+            outline: none;
+            box-shadow: 0px 0px 8px rgba(24, 119, 242, 0.3);
+        }
+        .option:focus{
+            border-color: #1877f2;
+            outline: none;
+            box-shadow: 0px 0px 8px rgba(24, 119, 242, 0.3);
+        }
         .btn, .butn {
             width: 48%;
-            background-color: #2ea44f;
+            background-color:rgb(12, 107, 231);
             color: white;
             padding: 10px;
             font-size: 16px;
@@ -42,7 +52,7 @@
             margin-top: 20px;
         }
         .btn:hover, .butn:hover {
-            background-color: #22863a;
+            background-color:rgb(53, 130, 245); 
         }
     </style>
 </head>
@@ -61,7 +71,7 @@
     <input type="date" name="date" required>
 
     <!-- Dropdown for Course Selection -->
-    <select name="courses" required>
+    <select name="courses" class="option"required>
         <option value="" disabled hidden>Select course</option>
         <option value="Digital Marketing">Digital Marketing</option>
         <option value="SAP training">SAP training</option>
@@ -132,7 +142,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit();
     }
 
-    $hashed_password = password_hash($key, PASSWORD_DEFAULT);
+    //$hashed_password = password_hash($key, PASSWORD_DEFAULT);
+    $hashed_password = $key;
 
     try {
         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
@@ -151,7 +162,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->bindParam(':course', $courses);
         $stmt->execute();
 
-        echo "<script>alert('Student details saved successfully!'); window.location.href='crude1.php';</script>";
+        echo "<script>alert('Student details saved successfully! Please login.'); window.location.href='login.php';</script>";
     } catch (PDOException $e) {
         echo "<script>alert('Database Error: " . $e->getMessage() . "');</script>";
     }
