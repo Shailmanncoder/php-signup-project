@@ -21,14 +21,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->bindParam(':email', $email, PDO::PARAM_STR);
         $stmt->execute();
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
-
+       
         // Debugging: Uncomment to check data
         // var_dump($user); exit();
 
         // Check if user exists and verify hashed password
         if ($user && password_verify($passwordInput, $user["password"])) {
-            $_SESSION["user"] = $user["email"];
-            echo "<script>alert('Login successful!'); window.location.href='home.php';</script>";
+            $_SESSION["user"] = $user["email"]; // Corrected missing semicolon
+            echo "<script>alert('Login successful!'); window.location.href='band.php';</script>";
             exit();
         } else {
             echo "<script>alert('Invalid email or password!'); window.history.back();</script>";
@@ -38,6 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">

@@ -143,8 +143,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     //$hashed_password = password_hash($key, PASSWORD_DEFAULT);
-    $hashed_password = $key;
-
+    $hashed_password = password_hash($key, PASSWORD_DEFAULT);
     try {
         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
